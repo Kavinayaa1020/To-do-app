@@ -1,0 +1,201 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+  min-height: 100vh;
+}
+
+.app {
+  width: 750px;
+  max-width: 92%;
+  margin: 50px auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 42px;
+  color: #111;
+}
+
+.task-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-bottom: 35px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.task-form h2,
+.tasks h2 {
+  color: #222;
+  margin-bottom: 20px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 13px 15px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #222;
+}
+
+textarea {
+  height: 100px;
+  resize: none;
+}
+
+button {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  background: #22c55e;
+  color: white;
+}
+
+.submit-btn:hover {
+  background: #16a34a;
+}
+
+/* Update Button */
+.update-btn {
+  width: 100%;
+  background: #222;
+  color: white;
+}
+
+.update-btn:hover {
+  background: #000;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.form-buttons button {
+  flex: 1;
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background: #e5e5e5;
+  color: #222;
+}
+
+.cancel-btn:hover {
+  background: #d4d4d4;
+}
+
+.tasks {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  margin-bottom: 15px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.task-content {
+  flex: 1;
+}
+
+.task-content h3 {
+  color: #111;
+  margin-bottom: 7px;
+  font-size: 19px;
+}
+
+.task-content p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.task-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Edit Button */
+.edit-btn {
+  background: #facc15;
+  color: #222;
+}
+
+.edit-btn:hover {
+  background: #eab308;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+.no-tasks {
+  text-align: center;
+  color: #888;
+  padding: 25px;
+}
+
+@media (max-width: 600px) {
+  .app {
+    margin: 30px auto;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .task-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .task-buttons {
+    width: 100%;
+  }
+
+  .task-buttons button {
+    flex: 1;
+  }
+}
