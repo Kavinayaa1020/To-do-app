@@ -12,7 +12,7 @@ app.get("/",(req,res)=>{
 });
 
 //connect mongodb
-mongoose.connect("mongodb://localhost:27017/todoapp")
+mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
     console.log("Connected to MongoDB");
 })
