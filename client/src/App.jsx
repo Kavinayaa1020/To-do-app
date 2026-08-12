@@ -1,25 +1,26 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
+const API_URL = "https://todo-backend-9hox.onrender.com";
+
 function App() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [todos, setTodos] = useState([]);
   const [editingId, setEditingId] = useState("");
 
-  //get all todos
+  // Get all todos
   const getTodos = async () => {
     try {
-      const response = await fetch("http://localhost:3000/todos");
+      const response = await fetch(`${API_URL}/todos`);
       const data = await response.json();
       setTodos(data);
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
     }
   };
 
-  //add todo
+  // Add todo
   const addTodo = async () => {
     if (!title || !description) {
       alert("Please fill all fields");
@@ -27,15 +28,15 @@ function App() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/todos", {
+      const response = await fetch(`${API_URL}/todos`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title: title,
-          description: description
-        })
+          description: description,
+        }),
       });
 
       const newTodo = await response.json();
@@ -43,20 +44,19 @@ function App() {
       setTodos([...todos, newTodo]);
       setTitle("");
       setDescription("");
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
     }
   };
 
-  //edit todo
+  // Edit todo
   const editTodo = (todo) => {
     setTitle(todo.title);
     setDescription(todo.description);
     setEditingId(todo._id);
   };
 
-  //update todo
+  // Update todo
   const updateTodo = async () => {
     if (!title || !description) {
       alert("Please fill all fields");
@@ -64,19 +64,16 @@ function App() {
     }
 
     try {
-      const response = await fetch(
-        `http://localhost:3000/todos/${editingId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            title: title,
-            description: description
-          })
-        }
-      );
+      const response = await fetch(`${API_URL}/todos/${editingId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          description: description,
+        }),
+      });
 
       const updatedTodo = await response.json();
 
@@ -89,27 +86,25 @@ function App() {
       setTitle("");
       setDescription("");
       setEditingId("");
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
     }
   };
 
-  //delete todo
+  // Delete todo
   const deleteTodo = async (id) => {
     try {
-      await fetch(`http://localhost:3000/todos/${id}`, {
-        method: "DELETE"
+      await fetch(`${API_URL}/todos/${id}`, {
+        method: "DELETE",
       });
 
       setTodos(todos.filter((todo) => todo._id !== id));
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
     }
   };
 
-  //cancel edit
+  // Cancel edit
   const cancelEdit = () => {
     setTitle("");
     setDescription("");
@@ -143,36 +138,57 @@ function App() {
 
         {editingId ? (
           <div className="form-buttons">
-            <button className="update-btn" onClick={updateTodo}>
+
+            <button
+              className="update-btn"
+              onClick={updateTodo}
+            >
               Update Task
             </button>
 
-            <button className="cancel-btn" onClick={cancelEdit}>
+            <button
+              className="cancel-btn"
+              onClick={cancelEdit}
+            >
               Cancel
             </button>
+
           </div>
         ) : (
-          <button className="submit-btn" onClick={addTodo}>
+          <button
+            className="submit-btn"
+            onClick={addTodo}
+          >
             Submit
           </button>
         )}
       </div>
 
       <div className="tasks">
+
         <h2>Tasks</h2>
 
         {todos.length === 0 ? (
-          <p className="no-tasks">No tasks added yet.</p>
+          <p className="no-tasks">
+            No tasks added yet.
+          </p>
         ) : (
           todos.map((todo) => (
-            <div className="task-card" key={todo._id}>
+            <div
+              className="task-card"
+              key={todo._id}
+            >
 
               <div className="task-content">
+
                 <h3>{todo.title}</h3>
+
                 <p>{todo.description}</p>
+
               </div>
 
               <div className="task-buttons">
+
                 <button
                   className="edit-btn"
                   onClick={() => editTodo(todo)}
@@ -186,11 +202,13 @@ function App() {
                 >
                   Delete
                 </button>
+
               </div>
 
             </div>
           ))
         )}
+
       </div>
 
     </div>
